@@ -1,2 +1,2 @@
 # cgmatch
-An interface to a custom Matchmaker Exchange node at Clinical Genomics.
+Add patient data to a matchmaker exchange node and shows patient matching with test queries
