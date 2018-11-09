@@ -47,35 +47,84 @@
 
 						<form method="POST">
 	            <div class="row">
-	              <label for="patients_id" class="col-sm-4 col-form-label"><strong>Patient's id</strong></label>
+	              <label for="patient_id" class="col-sm-4 col-form-label"><strong>Patient's id</strong></label>
 	              <div>
 	                <input type="text" name="patients_id" id="patients_id" value="1" size="5">
 	              </div>
 	            </div>
 							<div class="row">
-								<label for="name" class="col-sm-4 col-form-label"><strong>Submitter's name</strong></label>
+								<label for="contact_name" class="col-sm-4 col-form-label"><strong>Submitter's name</strong></label>
 	              <div>
-	                <input type="text" id="name" name="name" value="" size="30">
+	                <input type="text" id="contact_name" name="contact_name" size="30" value="Sir Cumference">
 	              </div>
 							</div>
-	            <div class="row">
-	              <label for="email" class="col-sm-4 col-form-label"><strong>Submitter's email</strong></label>
+							<div class="row">
+	              <label for="contact_institution" class="col-sm-4 col-form-label"><strong>Submitter's institution</strong></label>
 	              <div>
-	                <input type="text" id="email" name="email" size="30">
+	                <input type="text" id="contact_institution" name="contact_institution" size="30" value="World's Institute of Geometry">
 	              </div>
 	            </div>
+	            <div class="row">
+	              <label for="contact_email" class="col-sm-4 col-form-label"><strong>Submitter's email</strong></label>
+	              <div>
+	                <input type="text" id="contact_email" name="contact_email" size="30" value="fake_email@email.com">
+	              </div>
+	            </div>
+							<br>
+
 	            <div class="row">
 	              <label for="features" class="col-sm-4 col-form-label"><strong>HPO features</strong></label>
 	              <div>
 	                <input type="text" name="features" id="features" size="30">
 	              </div>
 	            </div>
+
+							<br>
 	            <div class="row">
-	              <label for="genomic_features" class="col-sm-4 col-form-label"><strong>Genes</strong></label>
+	              <label for="genomicFeatures_gene" class="col-sm-4 col-form-label"><strong>Gene</strong></label>
 	              <div>
-	                <input type="text" name="genomic_features" id="genomic_features" size="30">
+	                <input type="text" name="genomicFeatures_gene" id="genomicFeatures_gene" size="30">
 	              </div>
 	            </div>
+
+							<div class="row">
+								<div class="col-sm-2">
+		              <label for="genomicFeatures_variant_assembly" class="col-form-label"><strong>Assembly</strong></label>
+		              <div>
+		                <input type="text" name="genomicFeatures_variant_assembly" id="genomicFeatures_variant_assembly" size="10" value="GRCh37">
+		              </div>
+								</div>
+								<div class="col-sm-3">
+								<label for="genomicFeatures_variant_referenceName" class="col-form-label"><strong>Chromosome</strong></label>
+									<div>
+										<select name="genomicFeatures_variant_referenceName" id="genomicFeatures_variant_referenceName">
+											{% for i in range(1,22) %}
+												<option value="{{i}}">{{i}}</option>
+											{% endfor %}
+												<option value="X">X</option>
+												<option value="Y">Y</option>
+										</select>
+		              </div>
+								</div>
+								<div class="col-sm-3">
+								<label for="genomicFeatures_variant_start" class="col-form-label"><strong>Position</strong></label>
+									<div>
+										<input type="text" name="genomicFeatures_variant_start" id="genomicFeatures_variant_start">
+		              </div>
+								</div>
+	            </div>
+							<br>
+							<div class="row">
+								<label for="genomicFeatures_variant_referenceBases" class="col-sm-2 col-form-label"><strong>Ref. base</strong></label>
+								<div class="col-sm3">
+									<input type="text" name="genomicFeatures_variant_referenceBases" id="genomicFeatures_variant_referenceBases" value="" size="5">
+								</div>
+								<label for="genomicFeatures_variant_alternateBases" class="col-sm-2 col-form-label"><strong>Alt. base</strong></label>
+								<div class="col-sm3">
+									<input type="text" name="genomicFeatures_variant_alternateBases" id="genomicFeatures_variant_alternateBases" value="" size="4">
+								</div>
+							</div>
+							<br>
 	            <div class="row">
 	              <label for="token" class="col-sm-4 col-form-label"><strong>Author. token</strong></label>
 	              <div class="col-sm6">
@@ -96,6 +145,11 @@
   </div><!--end of jumbotron-->
 
   <div class="container">
+
+		<div class="row">
+			{{benchmark_patients}}
+		</div>
+
     <div class="row">
 			<div class="col-sm-4 col-form-label"><strong>Submitted json query:</strong></div>
 			<div>
