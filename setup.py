@@ -122,8 +122,9 @@ setup(
         'Operating System :: MacOS',
         'Operating System :: Unix'
     ],
-    # $ setup.py publish support.
-    cmdclass={
-        'upload': UploadCommand,
+    entry_points={
+        'console_scripts': [
+            'cgmatch = cgmatch.cli.root:base'
+        ],
     },
 )

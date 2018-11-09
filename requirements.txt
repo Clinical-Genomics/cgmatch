@@ -1,2 +1,9 @@
-# Interface
+# interface
 Flask
+
+# cli
+click<7.0
+coloredlogs
+
+# database
+pymongo<3.7
