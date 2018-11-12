@@ -101,7 +101,7 @@
 					<div class="row">
 						<label for="token" class="col-sm-3 col-form-label"><strong>Author. token</strong></label>
 						<div class="col-sm6">
-							<input type="text" name="token" id="token" value="" size="30">
+							<input type="text" name="token" id="token" value="hello" size="30">
 						</div>
 					</div>
 				</div><!--end of <div class="col-sm"> -->
@@ -117,19 +117,57 @@
   <div class="container">
 		<h4>Testing local implementation of MME servers:</h4><br>
 		<div class="row">
+			{% if patient_query %}
+				<strong>Patients query:</strong> {{patient_query}}
+
+			{% endif %}
+		</div>
+		<br>
+		<div class="row">
 			<div class="col-sm">
 				<h5><a href="https://github.com/MatchmakerExchange/reference-server" target="_blank">MME reference server</a></h5>
+				<br>
+				<div>
+					{% if refserver_response %}
+						{% if refserver_response.results %}
+							{% for result in refserver_response.results %}
+								<table class="table table-sm table-bordered">
+									<tr>
+										<td><strong>{{result.patient.id}}</strong></td>
+										<td><span class="badge badge-primary badge-pill">{{result.score.patient}}</span></td>
+									</tr>
+									<tr>
+										<td><strong>Contact</strong></td>
+										<td>{{result.patient.contact}}</td>
+									</tr>
+									<tr>
+										<td><strong>Disorders</strong></td>
+										<td>{{result.patient.disorders}}</td>
+									</tr>
+									<tr>
+										<td><strong>features</strong></td>
+										<td>{{result.patient.features}}</td>
+									</tr>
+									<tr>
+										<td><strong>Genomic features</strong></td>
+										<td>{{result.patient.genomicFeatures}}</td>
+									</tr>
+								</table>
+								<br><br>
+							{% endfor %}
 
-
-
-
-
-
+						{% else %}
+							<span style="color: red">
+								{{refserver_response.message}}
+							</span>
+						{% endif %}
+					{% endif %}
+				</div>
 			</div>
 			<div class="col-sm">
 				<h5><a href="https://github.com/macarthur-lab/matchbox" target="_blank">Matchbox (MacArthur Lab)</a></h5>
 			</div>
-		</div> <!-- end of <div class="row">
+		</div> <!-- end of <div class="row">-->
 
 	</div>
 </body>
