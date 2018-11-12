@@ -1,9 +1,14 @@
-# interface
+## interface
 Flask
+Flask-WTF
 
-# cli
+
+## cli
 click<7.0
 coloredlogs
 
-# database
+## database connection
+  # cli
 pymongo<3.7
+  # web app
+Flask-PyMongo

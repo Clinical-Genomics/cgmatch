@@ -23,7 +23,9 @@
 
 
   <div class="jumbotron">
-		<div class="row">
+		<strong><h4>Interactive patient query:</strong></h4><br><br>
+		<form method="POST">
+			<!--
 			<div class="col-sm text-left">
 	      <strong>Query example from terminal:</strong><br><br>
 	      <pre style="text-align: left;  white-space: pre-line">
@@ -39,138 +41,96 @@
 	          "test": true
 	        }}' localhost:8000/v1/match
 	      </pre>
-			</div><!--end of <div class="col-sm">-->
-			<div class="col-sm">
-				<div class="row">
-					<div class="col-sm">
-						<strong>Interactive query:</strong><br><br>
-
-						<form method="POST">
-	            <div class="row">
-	              <label for="patient_id" class="col-sm-4 col-form-label"><strong>Patient's id</strong></label>
-	              <div>
-	                <input type="text" name="patients_id" id="patients_id" value="1" size="5">
-	              </div>
-	            </div>
-							<div class="row">
-								<label for="contact_name" class="col-sm-4 col-form-label"><strong>Submitter's name</strong></label>
-	              <div>
-	                <input type="text" id="contact_name" name="contact_name" size="30" value="Sir Cumference">
-	              </div>
-							</div>
-							<div class="row">
-	              <label for="contact_institution" class="col-sm-4 col-form-label"><strong>Submitter's institution</strong></label>
-	              <div>
-	                <input type="text" id="contact_institution" name="contact_institution" size="30" value="World's Institute of Geometry">
-	              </div>
-	            </div>
-	            <div class="row">
-	              <label for="contact_email" class="col-sm-4 col-form-label"><strong>Submitter's email</strong></label>
-	              <div>
-	                <input type="text" id="contact_email" name="contact_email" size="30" value="fake_email@email.com">
-	              </div>
-	            </div>
-							<br>
-
-	            <div class="row">
-	              <label for="features" class="col-sm-4 col-form-label"><strong>HPO features</strong></label>
-	              <div>
-	                <input type="text" name="features" id="features" size="30">
-	              </div>
-	            </div>
-
-							<br>
-	            <div class="row">
-	              <label for="genomicFeatures_gene" class="col-sm-4 col-form-label"><strong>Gene</strong></label>
-	              <div>
-	                <input type="text" name="genomicFeatures_gene" id="genomicFeatures_gene" size="30">
-	              </div>
-	            </div>
-
-							<div class="row">
-								<div class="col-sm-2">
-		              <label for="genomicFeatures_variant_assembly" class="col-form-label"><strong>Assembly</strong></label>
-		              <div>
-		                <input type="text" name="genomicFeatures_variant_assembly" id="genomicFeatures_variant_assembly" size="10" value="GRCh37">
-		              </div>
-								</div>
-								<div class="col-sm-3">
-								<label for="genomicFeatures_variant_referenceName" class="col-form-label"><strong>Chromosome</strong></label>
-									<div>
-										<select name="genomicFeatures_variant_referenceName" id="genomicFeatures_variant_referenceName">
-											{% for i in range(1,22) %}
-												<option value="{{i}}">{{i}}</option>
-											{% endfor %}
-												<option value="X">X</option>
-												<option value="Y">Y</option>
-										</select>
-		              </div>
-								</div>
-								<div class="col-sm-3">
-								<label for="genomicFeatures_variant_start" class="col-form-label"><strong>Position</strong></label>
-									<div>
-										<input type="text" name="genomicFeatures_variant_start" id="genomicFeatures_variant_start">
-		              </div>
-								</div>
-	            </div>
-							<br>
-							<div class="row">
-								<label for="genomicFeatures_variant_referenceBases" class="col-sm-2 col-form-label"><strong>Ref. base</strong></label>
-								<div class="col-sm3">
-									<input type="text" name="genomicFeatures_variant_referenceBases" id="genomicFeatures_variant_referenceBases" value="" size="5">
-								</div>
-								<label for="genomicFeatures_variant_alternateBases" class="col-sm-2 col-form-label"><strong>Alt. base</strong></label>
-								<div class="col-sm3">
-									<input type="text" name="genomicFeatures_variant_alternateBases" id="genomicFeatures_variant_alternateBases" value="" size="4">
-								</div>
-							</div>
-							<br>
-	            <div class="row">
-	              <label for="token" class="col-sm-4 col-form-label"><strong>Author. token</strong></label>
-	              <div class="col-sm6">
-	                <input type="text" name="token" id="token" value="" size="30">
-	              </div>
-							</div>
-							<br>
-	      			<div class="row">
-	              <div class="col-sm5 justify-content-md-center">
-	                <button type="submit" class="btn btn-primary mb-2">Submit search</button>
-	              </div>
-	            </div>
-	          </form>
+			</div>-->
+			<div class="row">
+				<div class="col-sm">
+					<!--Contact info-->
+					<div class="row">
+					  <label for="contact_name" class="col-sm-3 col-form-label"><strong>Submitter's name</strong></label>
+					  <div>
+					    <input type="text" id="contact_name" name="contact_name" size="50">
+					  </div>
 					</div>
-				</div>
-			</div><!--end of <div class="col-sm">-->
-		</div><!--end of <div class="row">-->
+					<div class="row">
+					  <label for="contact_institution" class="col-sm-3 col-form-label"><strong>Submitter's institution</strong></label>
+					  <div>
+					    <input type="text" id="contact_institution" name="contact_institution" size="50">
+					  </div>
+					</div>
+					<div class="row">
+					  <label for="contact_email" class="col-sm-3 col-form-label"><strong>Submitter's email</strong></label>
+					  <div>
+					    <input type="text" id="contact_email" name="contact_email" size="50">
+					  </div>
+					</div><!--end of contact info-->
+
+					<br>
+
+					<!--patients ID-->
+					<div class="row">
+						<label for="patients_id" class="col-sm-3 col-form-label"><strong>Patient's ID</strong></label>
+						<div>
+							<input type="text" id="patients_id" name="patients_id" size="50" value="{{test_patient._id}}">
+						</div>
+					</div>
+
+					<br>
+
+					<!--genomic features-->
+					<div class="row">
+						<label for="genomic_features" class="col-sm-3 col-form-label"><strong>Genomic features</strong></label>
+						<div>
+							<textarea name="genomic_features" id="genomic_features" cols="50" rows="5">
+								{{- test_patient.genomicFeatures -}}
+							</textarea>
+						</div>
+					</div>
+				</div> <!--end of <div class="col-sm"> -->
+
+				<div class="col-sm">
+					<!--features -->
+					<div class="row">
+					  <label for="features" class="col-sm-3 col-form-label"><strong>Features</strong></label>
+					  <div>
+							<textarea name="features" id="features" cols="50" rows="12">
+								{{- test_patient.features -}}
+							</textarea>
+					  </div>
+					</div><!-- end of features -->
+					<br>
+					<div class="row">
+						<label for="token" class="col-sm-3 col-form-label"><strong>Author. token</strong></label>
+						<div class="col-sm6">
+							<input type="text" name="token" id="token" value="" size="30">
+						</div>
+					</div>
+				</div><!--end of <div class="col-sm"> -->
+			</div> <!--end of <div class="row"-->
+			<br>
+			<div class="text-center">
+				<button type="submit" class="btn btn-primary">Submit search</button>
+			</div>
+
+		</form>
   </div><!--end of jumbotron-->
 
   <div class="container">
-
+		<h4>Testing local implementation of MME servers:</h4><br>
 		<div class="row">
-			{{benchmark_patients}}
-		</div>
+			<div class="col-sm">
+				<h5><a href="https://github.com/MatchmakerExchange/reference-server" target="_blank">MME reference server</a></h5>
 
-    <div class="row">
-			<div class="col-sm-4 col-form-label"><strong>Submitted json query:</strong></div>
-			<div>
-				{{json_query}}
+
+
+
+
+
 			</div>
-		</div>
-		<br><br>
-		{% if result %}
-			<div class="row">
-				<div class="col-sm-4 col-form-label"><strong>Server response:</strong></div>
-				<div>
-					{% if result.results %}
-						{% for patient in result.results %}
-							{{patient}}<br><br>
-						{% endfor %}
-					{% elif result.message %}
-						{{result.message}}
-					{% endif %}
-				</div>
+			<div class="col-sm">
+				<h5><a href="https://github.com/macarthur-lab/matchbox" target="_blank">Matchbox (MacArthur Lab)</a></h5>
 			</div>
-		{% endif %}
+		</div> <!-- end of <div class="row">
+
 	</div>
 </body>
 </html>
