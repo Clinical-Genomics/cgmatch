@@ -12,6 +12,7 @@ LOG = logging.getLogger(__name__)
 def index():
 
     data = {}
+    test_patient_obj = None
     if request.method == 'POST':
         # create patient query
         patient_query = controllers.format_query(request.form)
@@ -44,12 +45,15 @@ def index():
             data['refserver_response'] = mme_patients[0]
             data['matchbox_response'] = mme_patients[1]
 
-    # If connection to db is present get a test patient to populate the patient's form
-    if current_app.config.get('MONGO_URI'):
-        test_patient_obj = controllers.a_patient()
+        test_patient_obj = controllers.a_patient(patient_id=request.form.get('patients_id')) # get same patient as before the query
 
-        if test_patient_obj:
-            data['test_patient'] = test_patient_obj
+    # If connection to db is present get a test patient to populate the patient's form
+    else:
+        if current_app.config.get('MONGO_URI'):
+            test_patient_obj = controllers.a_patient()
+
+    if test_patient_obj:
+        data['test_patient'] = test_patient_obj
 
 
 
