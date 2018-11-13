@@ -92,18 +92,12 @@
 					<div class="row">
 					  <label for="features" class="col-sm-3 col-form-label"><strong>Features</strong></label>
 					  <div>
-							<textarea name="features" id="features" cols="50" rows="12">
+							<textarea name="features" id="features" cols="50" rows="15">
 								{{- test_patient.features -}}
 							</textarea>
 					  </div>
 					</div><!-- end of features -->
 					<br>
-					<div class="row">
-						<label for="token" class="col-sm-3 col-form-label"><strong>Author. token</strong></label>
-						<div class="col-sm6">
-							<input type="text" name="token" id="token" value="hello" size="30">
-						</div>
-					</div>
 				</div><!--end of <div class="col-sm"> -->
 			</div> <!--end of <div class="row"-->
 			<br>
@@ -160,15 +154,53 @@
 							<span style="color: red">
 								{{refserver_response.message}}
 							</span>
+							<br><br>
 						{% endif %}
 					{% endif %}
 				</div>
 			</div>
 			<div class="col-sm">
 				<h5><a href="https://github.com/macarthur-lab/matchbox" target="_blank">Matchbox (MacArthur Lab)</a></h5>
+				<br>
+				<div>
+					{% if matchbox_response %}
+						{% if matchbox_response.results %}
+							{% for result in matchbox_response.results %}
+								<table class="table table-sm table-bordered">
+									<tr>
+										<td><strong>{{result.patient.id}}</strong></td>
+										<td><span class="badge badge-primary badge-pill">{{result.score.patient}}</span><span class="badge badge-info badge-pill">gtype_score:{{result.score._genotypeScore}}</span><span class="badge badge-secondary badge-pill">pheno_score:{{result.score._phenotypeScore}}</span></td>
+									</tr>
+									<tr>
+										<td><strong>Contact</strong></td>
+										<td>{{result.patient.contact}}</td>
+									</tr>
+									<tr>
+										<td><strong>Disorders</strong></td>
+										<td>{{result.patient.disorders}}</td>
+									</tr>
+									<tr>
+										<td><strong>features</strong></td>
+										<td>{{result.patient.features}}</td>
+									</tr>
+									<tr>
+										<td><strong>Genomic features</strong></td>
+										<td>{{result.patient.genomicFeatures}}</td>
+									</tr>
+								</table>
+								<br><br>
+							{% endfor %}
+						{% else %}
+							Server response:
+							<span style="color: red">
+								{{matchbox_response}}
+							</span>
+							<br><br>
+						{% endif %}
+					{% endif %}
+				</div>
 			</div>
 		</div> <!-- end of <div class="row">-->
-
 	</div>
 </body>
 </html>

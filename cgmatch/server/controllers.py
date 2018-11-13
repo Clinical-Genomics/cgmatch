@@ -18,13 +18,18 @@ def a_patient(patient_id=None):
         Returns:
             patient_obj(dic) : a matchmaker patient object
     """
-    LOG.info("retrieving a random patient from db")
 
     mongo = PyMongo(current_app)
     patient_obj = None
-    if patient_id == None: # this function should return a test patient
-        patient_obj = mongo.db.patient.find_one( {'contact.institution' : "Children's Hospital of Eastern Ontario"} )
+    if patient_id == None: # this function should return a random test patient
+        LOG.info("retrieving a random patient from db")
+        query_result = mongo.db.patient.aggregate([
+                { '$match' : {'contact.institution' : "Children's Hospital of Eastern Ontario"} },
+                { '$sample' : { 'size' : 1 } }]
+            )
+        patient_obj = dict(list(query_result)[0])
     else:
+        LOG.info("retrieving patient {} from db".format(patient_id))
         patient_obj = mongo.db.patient.find_one( {'_id': patient_id} )
 
     # if a patient is retrieved than parse its features (used downstream for patient query)
@@ -33,6 +38,7 @@ def a_patient(patient_id=None):
             feature['id'] = feature.get('_id')
             feature.pop('_id')
 
+        LOG.info("Patient with ID {} was retrieved".format(patient_obj['_id']))
     return patient_obj
 
 def format_query(form_fields):
@@ -44,6 +50,7 @@ def format_query(form_fields):
         Returns:
             patient_query(dict) : a patient query object
     """
+    LOG.info("formatting patient query")
 
     patient_query= {
         "patient": {
@@ -53,9 +60,7 @@ def format_query(form_fields):
                 "href": "mailto:"+form_fields.get("contact_email")
             },
             "features": eval(form_fields.get("features")),
-            #"genomicFeatures": str(form_fields.get("genomic_features")),
-            #features" : [{"id":"HP:0000522"}],
-            "genomicFeatures" : [{"gene":{"id":"NGLY1"}}]
+            "genomicFeatures": eval(form_fields.get("genomic_features"))
         }
     }
     return patient_query
@@ -71,8 +76,8 @@ def post_request(server_url,headers,query):
         json_response: a json-formatted server response
     """
     json_response = None
-
     try:
+        LOG.info('sending HTTP request to server:{}'.format(server_url))
         server_return = requests.request(
             method = 'POST',
             url = server_url,
@@ -80,9 +85,16 @@ def post_request(server_url,headers,query):
             data = json.dumps(query)
         )
         # get json response:
-        json_response = server_return.json()
+        try:
+            json_response = server_return.json()
+        except Exception as json_exp:
+            json_response_string = server_return.text.replace('""','","') # fixing json file in the string representation of it
+            json_response = eval(json_response_string)
+            LOG.info('------->'+str(json_response.keys()))
+
+        LOG.info('server returns the following response: {}'.format(json_response))
 
     except Exception as err:
-        json_response = err
+        LOG.info('An error occurred while sending HTTP request to server ({})'.format(err))
 
     return json_response

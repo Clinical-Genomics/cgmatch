@@ -57,9 +57,9 @@ def load_demo(db_uri=None):
                 # convert patient in matchbox patient
                 matchbox_patient = matchbox_patient_obj(patient) # convert json patient to matchbox patient object
                 # save patient to database:
-                if counter <= 2:
-                    LOG.info("\n-------> patient n. "+str(counter)+'\n')
-                    inserted_patients.append(add_patient(patients_collection, matchbox_patient))
+
+                LOG.info("\n-------> patient n. "+str(counter)+'\n')
+                inserted_patients.append(add_patient(patients_collection, matchbox_patient))
                 counter += 1
 
 
