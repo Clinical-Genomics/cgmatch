@@ -13,7 +13,7 @@ A running instance of both [MME reference server](https://github.com/MatchmakerE
 ([Notes on how to install these repos](#How-to-install-MME-reference-server-and-Matchbox-on-a-local-machine))
 
 ## installation
-Clone package from github:
+Clone the repository from github:
 ```sh
 git clone https://github.com/northwestwitch/cgmatch.git
 ```
@@ -23,12 +23,35 @@ pip install -e .
 ```
 
 
+## Usage
+After installation you might want to edit the **config.cfg** configuration file under /instance to mirror the configuration of both MME reference server and Matchbox.
+A general configuration is provided so if the installation of the two servers was made following the instructions below everything should work fine.
+
+### Load benchmarking patients in the MME servers
+[Benchmarking patients](https://github.com/ga4gh/mme-apis/tree/master/testing) from this are available for testing. To load these 50 patients in MME reference server follow the instructions available on the [github page](https://github.com/MatchmakerExchange/reference-server) under **Loading custom patient data**.
+
+To load the same 50 patients in MatchBox run the following command:
+```sh
+cgmatch load_demo
+```
+
+### Testing the server with custom queries
+Make the run.py file executable
+```sh
+chmod +x run.py
+```
+And run it to start the application server. The app will run by default at **http://127.0.0.1:5000/**.
+Open this url on a browser page and test by submitting patients queries to the server. Mark that the two server responses provide different results, reflecting the different matching algorithms used by the two MME servers.
+
 
 
 #### How to install MME reference server and Matchbox on a local machine
 
 ##### MME reference server
-Follow the instructions at [this page](https://github.com/MatchmakerExchange/reference-server). Make sure to load the custom patient data from the provided [json file](https://raw.githubusercontent.com/ga4gh/mme-apis/master/testing/benchmark_patients.json).
+Follow the instructions at [this page](https://github.com/MatchmakerExchange/reference-server). After installing the software be sure to authorize a custom client with a custom authorization token:
+```sh
+mme-server clients add myclient --label "My Client" --key "<CLIENT_AUTH_TOKEN>"
+```
 
 
 ##### MatchBox
