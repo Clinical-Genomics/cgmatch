@@ -66,7 +66,7 @@ mme-server clients add myclient --label "My Client" --key "<CLIENT_AUTH_TOKEN>"
 
 
 ##### MatchBox
-The installation of this software via Docker is currently not working as it should and so the installation requires a workaround.
+The installation of this software via Docker is currently not working as it should but it is possible to deploy it using Maven and some fixes.
 
 Requirements:
 * Java 1.8
