@@ -41,8 +41,10 @@ Make the run.py file executable
 chmod +x run.py
 ```
 And run it to start the application server. The app will run by default at **http://127.0.0.1:5000/**.
-Open this url on a browser page and test by submitting patients queries to the server. Mark that the two server responses provide different results, reflecting the different matching algorithms used by the two MME servers.
-
+Open this url on a browser page and test by submitting random patients queries (editable by users) to the server.
+![query submit demo](img/test_query_form.png)
+Mark that the two server responses provide different results, reflecting the different matching algorithms used by the two MME servers.
+![response demo](img/test_response.png)
 
 
 #### How to install MME reference server and Matchbox on a local machine
