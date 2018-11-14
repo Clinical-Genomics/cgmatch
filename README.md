@@ -40,7 +40,11 @@ Make the run.py file executable
 ```sh
 chmod +x run.py
 ```
-And run it to start the application server. The app will run by default at **http://127.0.0.1:5000/**.
+And run it to start the application server:
+```sh
+./run.py
+```
+The app will run by default at **http://127.0.0.1:5000/**.
 Open this url on a browser page and test by submitting random patients queries (editable by users) to the server:
 
 ![query submit demo](img/test_query_form.png)
