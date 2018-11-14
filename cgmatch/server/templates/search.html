@@ -108,13 +108,11 @@
 		</form>
   </div><!--end of jumbotron-->
 
+{% if patient_query %}
   <div class="container">
 		<h4>Testing local implementation of MME servers:</h4><br>
 		<div class="row">
-			{% if patient_query %}
-				<strong>Patients query:</strong> {{patient_query}}
-
-			{% endif %}
+			<strong>Patients query:</strong> {{patient_query}}
 		</div>
 		<br>
 		<div class="row">
@@ -128,7 +126,7 @@
 								<table class="table table-sm table-bordered">
 									<tr>
 										<td><strong>{{result.patient.id}}</strong></td>
-										<td><span class="badge badge-primary badge-pill">{{result.score.patient}}</span></td>
+										<td><span class="badge badge-primary badge-pill">{{result.score.patient|round(4)}}</span></td>
 									</tr>
 									<tr>
 										<td><strong>Contact</strong></td>
@@ -169,7 +167,7 @@
 								<table class="table table-sm table-bordered">
 									<tr>
 										<td><strong>{{result.patient.id}}</strong></td>
-										<td><span class="badge badge-primary badge-pill">{{result.score.patient}}</span><span class="badge badge-info badge-pill">gtype_score:{{result.score._genotypeScore}}</span><span class="badge badge-secondary badge-pill">pheno_score:{{result.score._phenotypeScore}}</span></td>
+										<td><span class="badge badge-primary badge-pill">{{result.score.patient|round(4)}}</span><span class="badge badge-info badge-pill">gtype_score:{{result.score._genotypeScore|round(4)}}</span><span class="badge badge-secondary badge-pill">pheno_score:{{result.score._phenotypeScore|round(4)}}</span></td>
 									</tr>
 									<tr>
 										<td><strong>Contact</strong></td>
@@ -202,5 +200,6 @@
 			</div>
 		</div> <!-- end of <div class="row">-->
 	</div>
+{% endif %}
 </body>
 </html>
