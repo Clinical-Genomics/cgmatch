@@ -4,7 +4,7 @@ Add patient data to a matchmaker exchange node and show patient matching with te
 ## Purpose
 This document describes how to use this app to test two different types of [Matchmaker Exchange](https://www.matchmakerexchange.org) implementations:
 * [MME reference server](https://github.com/MatchmakerExchange/reference-server)
-* [MatchCox](https://github.com/macarthur-lab/matchbox)
+* [MatchBox](https://github.com/macarthur-lab/matchbox)
 
 Evantually this repo will serve as a bridge to export patient data from [Scout](https://github.com/Clinical-Genomics/scout) database to a Matchmaker instance at Clinical Genomics.
 
@@ -12,13 +12,26 @@ Evantually this repo will serve as a bridge to export patient data from [Scout](
 A running instance of both [MME reference server](https://github.com/MatchmakerExchange/reference-server) server and [MatchBox](https://github.com/macarthur-lab/matchbox).
 ([Notes on how to install these repos](#How-to-install-MME-reference-server-and-Matchbox-on-a-local-machine))
 
-### How to install MME reference server and Matchbox on a local machine
+## installation
+Clone package from github:
+```sh
+git clone https://github.com/northwestwitch/cgmatch.git
+```
+Change directory to its main folder (cgmatch). From there install it with the following command:
+```sh
+pip install -e .
+```
 
-#### MME reference server
+
+
+
+#### How to install MME reference server and Matchbox on a local machine
+
+##### MME reference server
 Follow the instructions at [this page](https://github.com/MatchmakerExchange/reference-server). Make sure to load the custom patient data from the provided [json file](https://raw.githubusercontent.com/ga4gh/mme-apis/master/testing/benchmark_patients.json).
 
 
-#### MatchBox
+##### MatchBox
 The installation of this software via Docker is currently not working as it should and so the installation requires a workaround.
 
 Requirements:
@@ -97,7 +110,7 @@ mvn clean install package
 This should in turn run some tests and install the software without errors. If everything works as it should the script should create a target folder ay this level with a .jar file inside.
 
 
-10. Start the server from the target folder:
+10. **Start the server** from the target folder:
 ```sh
 java -jar matchbox-0.1.0.jar --server.port=9020
 ```
