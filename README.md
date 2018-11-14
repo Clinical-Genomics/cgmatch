@@ -50,7 +50,7 @@ Note that the two server responses provide different results, reflecting the dif
 
 ![response demo](img/test_response.png)
 
-***
+******
 
 #### How to install MME reference server and Matchbox on a local machine
 
