@@ -30,7 +30,7 @@ Requirements:
 Installation steps:
 * **Install Exomiser**:
 This software is required for the phenotype matching algorithm of MatchBox.
-1. Make sure that the following lines are present in the settings.xml file (under ~/.m2/ directory):
+1. Make sure that the following lines are present in the **settings.xml file** (under ~/.m2/ directory):
 
 ```sh
 <settings>
@@ -38,35 +38,35 @@ This software is required for the phenotype matching algorithm of MatchBox.
 </settings>
 ```
 
-2. Clone Exomiser from github with the following command:
+2. **Clone Exomiser** from github with the following command:
 ```sh
 git clone https://github.com/exomiser/Exomiser
 ```
 
-3. Change directory to the Exomiser folder and build with Maven:
+3. Change directory to the Exomiser folder and **build with Maven**:
 ```sh
 mvn clean install package
 ```
 
-4. Save the Exomiser phenotype data in a folder accessible by matchbox:
+4. Save the **Exomiser phenotype data** in a folder accessible by matchbox:
 ```sh
 https://storage.googleapis.com/seqr-reference-data/1807_phenotype.tar.gz
 ```
 and extract the data to a folder accessible by matchbox (This will be the **exomiser.data-directory** in matchbox settings).
 
-5. Clone MatchBox from github with the following command:
+5. **Clone MatchBox** from github with the following command:
 ```sh
 git clone https://github.com/macarthur-lab/matchbox
 ```
 and change directory to the matchbox folder.
 
-6. Edit the configuration file src/main/resources/application.properties by filling in the following mongodb required fields:
-...* spring.data.mongodb.host=127.0.0.1
-...* spring.data.mongodb.port=27017
-...* spring.data.mongodb.database=cgmatchbox
-...* pring.data.mongodb.username=mboxuser
-...* spring.data.mongodb.password=mboxpassword
+6. **Edit the configuration file** src/main/resources/application.properties by filling in the following mongodb required fields:
+* spring.data.mongodb.host=127.0.0.1
+* spring.data.mongodb.port=27017
+* spring.data.mongodb.database=cgmatchbox
+* pring.data.mongodb.username=mboxuser
+* spring.data.mongodb.password=mboxpassword
 
 and the Exomiser data directory ones:
-...* exomiser.data-directory=path_to/matchbox_phenotypes
-...* exomiser.phenotype.data-version=1807
+* exomiser.data-directory=path_to/matchbox_phenotypes
+* exomiser.phenotype.data-version=1807
