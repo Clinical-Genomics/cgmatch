@@ -54,7 +54,7 @@ def format_query(form_fields):
 
     patient_query= {
         "patient": {
-            "id": str(form_fields.get("patients_id")),
+            "id": 'test_patient_id',
             "contact" : {
                 "name": form_fields.get("contact_name"),
                 "href": "mailto:"+form_fields.get("contact_email")
