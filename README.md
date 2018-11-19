@@ -146,5 +146,5 @@ This should in turn run some tests and install the software without errors. If e
 
 10. **Start the server** from the target folder:
 ```sh
-java -jar matchbox-0.1.0.jar --server.port=9020
+java -jar target/matchbox-0.1.0.jar --server.port=9020
 ```
