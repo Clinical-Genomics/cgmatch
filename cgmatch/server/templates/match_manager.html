@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	{% block css %}
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	{% endblock %}
+</head>
+
+<body>
+	<div>
+		<h4><strong>Matches by patient</strong></h4><br><br>
+		{% for patient, matches in patient_matches.items() %}
+		<div class="card">
+			<h5 class="card-header">Patient {{patient}}</h5>
+			<div class="card-body">
+			{% if matches %} <!-- Print info only if patient has matches -->
+				<ul class="list-group list-group-flush">
+					{% for query in matches %}
+						<li class="list-group-item">
+							<strong>External patient query:&nbsp;</strong>{{query.incomingQuery}}<br>
+							{% for result in query.results %}
+								{% if result.patient._id == patient%}
+								<strong>Scores:</strong>&nbsp;<span class="badge badge-primary badge-pill">{{result.score.patient|round(4)}}</span><span class="badge badge-info badge-pill">gtype_score:{{result.score._genotypeScore|round(4)}}</span><span class="badge badge-secondary badge-pill">pheno_score:{{result.score._phenotypeScore|round(4)}}</span><br>
+								{% endif %}
+							{% endfor %}
+							<strong>Executed:&nbsp;[{{query.timeStamp}}]</strong>
+						</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+			</div>
+		</div>
+		{% endfor %}
+</body>
+
+</html>
