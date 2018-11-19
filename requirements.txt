@@ -8,7 +8,7 @@ click<7.0
 coloredlogs
 
 ## database connection
+  # web app
+flask_pymongo
   # cli
 pymongo<3.7
-  # web app
-Flask-PyMongo

@@ -20,10 +20,16 @@
       </ul>
     {% endif %}
   {% endwith %}
-
-
   <div class="jumbotron">
-		<strong><h4>Interactive patient query:</strong></h4><br><br>
+		<div class="row">
+			<div class="col-md-6">
+				<strong><h4>Interactive patient query:</strong></h4>
+				<br><br>
+			</div>
+			<div class="col-md-6 text-right">
+				<a class="btn btn-warning" href="{{ url_for('match_manager') }}" role="button">Patient query manager</a>
+			</div>
+		</div>
 		<form method="POST">
 			<!--
 			<div class="col-sm text-left">

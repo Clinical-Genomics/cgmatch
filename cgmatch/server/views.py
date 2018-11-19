@@ -10,7 +10,7 @@ LOG = logging.getLogger(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-
+    """This page perform patient queries on local Matchmaker exchange servers instances"""
     data = {}
     test_patient_obj = None
     if request.method == 'POST':
@@ -55,6 +55,13 @@ def index():
     if test_patient_obj:
         data['test_patient'] = test_patient_obj
 
-
-
     return render_template('search.html', **data)
+
+@app.route('/match_manager', methods=['GET'])
+def match_manager():
+    """ This page display history and query results by patient"""
+
+    data = {}
+    if current_app.config.get('MONGO_URI'): #if there is a mongodb set up
+        data['patient_matches'] = controllers.patient_matches()
+    return render_template('match_manager.html', **data)

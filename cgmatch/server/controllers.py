@@ -7,7 +7,6 @@ import requests
 
 LOG = logging.getLogger(__name__)
 
-
 def a_patient(patient_id=None):
     """ Gets a specific patient when an id is provided,
         otherwise returns a random patient from the 50 benchmark patients
@@ -40,6 +39,25 @@ def a_patient(patient_id=None):
 
         LOG.info("Patient with ID {} was retrieved".format(patient_obj['_id']))
     return patient_obj
+
+def patient_matches():
+    """ Retrieve external matching queries and respective matching results, group by patient matched
+
+        Returns:
+            patient_matches(obj): keys are database patients and values a list of external patients matching them
+    """
+
+    LOG.info("collecting patient matches from matchbox database")
+    mongo = PyMongo(current_app)
+
+    patient_matches = {}
+
+    patients = mongo.db.patient.find()
+    for patient in patients:
+        matches = mongo.db.externalMatchQuery.find({ 'results.patient._id' : patient['_id']})
+        patient_matches[patient['_id']] = list(matches)
+
+    return patient_matches
 
 def format_query(form_fields):
     """ Create a patient query from the fields returned from a patient search form
